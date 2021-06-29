@@ -17,13 +17,15 @@ public class LivroRequest {
     private String titulo;
     @NotBlank @Size(max = 500)
     private String resumo;
+    @NotBlank
+    private String sumario;
     @NotNull @Min(value = 20)
     private Double preco;
     @NotNull @Min(value = 100)
     private Integer numeroPaginas;
     @NotBlank @UniqueValue(domainClass = Livro.class, fieldName = "isbn")
     private String isbn;
-    @Future @JsonFormat(pattern = "dd-MM-yyyy")
+    @Future @NotNull @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataPublicacao;
     @NotNull @ExistsId(domainClass = Autor.class, fieldName = "id")
     private Long autorId;
@@ -34,7 +36,7 @@ public class LivroRequest {
         Autor autor = autorRepository.getById(autorId);
         Categoria categoria = categoriaRepository.getById(categoriaId);
 
-        return new Livro(this.titulo, this.resumo, this.preco, this.numeroPaginas, this.isbn, this.dataPublicacao, autor, categoria);
+        return new Livro(this.titulo, this.resumo, this.sumario, this.preco, this.numeroPaginas, this.isbn, this.dataPublicacao, autor, categoria);
     }
 
     public String getTitulo() {
@@ -44,6 +46,8 @@ public class LivroRequest {
     public String getResumo() {
         return resumo;
     }
+
+    public String getSumario() { return sumario; }
 
     public Double getPreco() {
         return preco;
