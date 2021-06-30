@@ -1,11 +1,11 @@
 package br.com.zupacademy.isadora.casadocodigo.config.validacao;
 
-public class ErroDeFormulario {
-
+public class ErroDeFormularioDTO {
     private String campo;
     private String erro;
 
-    public ErroDeFormulario(String campo, String erro) {
+
+    public ErroDeFormularioDTO(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }
@@ -17,5 +17,4 @@ public class ErroDeFormulario {
     public String getErro() {
         return erro;
     }
-
 }
