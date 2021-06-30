@@ -2,13 +2,13 @@ package br.com.zupacademy.isadora.casadocodigo.livro;
 
 import br.com.zupacademy.isadora.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.isadora.casadocodigo.categoria.CategoriaRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/livros")
@@ -38,5 +38,16 @@ public class LivroController {
         livros.forEach(livro -> listaLivrosResponse.add(new ListaLivrosResponse(livro)));
 
         return listaLivrosResponse;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalhesDoLivroResponse> detalhar(@PathVariable Long id) {
+        Optional<Livro> livro = livroRepository.findById(id);
+
+        if (livro.isPresent()) {
+            return ResponseEntity.ok(new DetalhesDoLivroResponse(livro.get()));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
