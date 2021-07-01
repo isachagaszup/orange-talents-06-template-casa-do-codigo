@@ -2,7 +2,6 @@ package br.com.zupacademy.isadora.casadocodigo.validador.anotacao;
 
 
 import br.com.zupacademy.isadora.casadocodigo.validador.EstadoUnicoValidator;
-import br.com.zupacademy.isadora.casadocodigo.validador.ExistsIdValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
